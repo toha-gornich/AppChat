@@ -11,8 +11,10 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.cl.appchat.databinding.ActivityMainBinding
 import com.cl.appchat.databinding.FragmentMainBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
+    private var firebaseAuth = FirebaseAuth.getInstance()
 
     private var mSectionPagerAdapter: SectionPagerAdapter? = null
     private var binding: ActivityMainBinding? = null
@@ -37,13 +39,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id:Int? = item.itemId
-        if (id==R.id.action_settings){
-            return  true
+        when(item.itemId){
+            R.id.action_logout ->onLogout()
         }
+//        val id:Int? = item.itemId
+//        if (id==R.id.action_settings){
+//            return  true
+//        }
 
         return super.onOptionsItemSelected(item)
     }
+
+    fun onLogout(){firebaseAuth.signOut()
+    startActivity(LoginActivity.newIntent(this))
+    finish()}
 
 
     inner class SectionPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {

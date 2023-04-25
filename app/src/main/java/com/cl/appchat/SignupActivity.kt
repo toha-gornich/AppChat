@@ -11,7 +11,7 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
     }
-    fun onClick(view: View){
+    fun onLogin(view: View){
         startActivity(MainActivity.newIntent(this))
         finish()
     }
