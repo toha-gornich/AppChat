@@ -1,4 +1,4 @@
-package com.cl.appchat
+package com.cl.appchat.activities
 
 import android.content.Context
 import android.content.Intent
@@ -24,6 +24,8 @@ class LoginActivity : AppCompatActivity() {
         startActivity(MainActivity.newIntent(this))
         finish()
     }}
+
+
     private var binding: ActivityLoginBinding? = null
     private var emailTIET: TextInputEditText? = null
     private var emailTIL: TextInputLayout? = null
@@ -65,11 +67,14 @@ class LoginActivity : AppCompatActivity() {
     fun onLogin(view: View) {
         var proceed = true
         if (binding!!.emailTIET.text.isNullOrEmpty()) {
-            emailTIET!!.error = "Email is required"
+            emailTIL!!.error = "Email is required"
+            emailTIL!!.isErrorEnabled = true
             proceed = false
         }
         if (binding!!.passwordTIET.text.isNullOrEmpty()) {
-            passwordTIET!!.error = "Email is required"
+            passwordTIL!!.error = "Password is required"
+            passwordTIL!!.isErrorEnabled = true
+
             proceed = false
         }
         if (proceed) {
